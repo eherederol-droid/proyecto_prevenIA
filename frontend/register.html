@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrevenIA — Crear Cuenta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="auth-page">
+  <!-- HERO -->
+  <div class="auth-hero">
+    <div class="auth-hero-content">
+      <div class="auth-hero-logo">
+        <img class="brand-image" src="../logo_prevenIA.png" alt="PrevenIA — Anticipa riesgos, protege vidas">
+      </div>
+      <h1>Únete a la plataforma líder en prevención deportiva</h1>
+      <p>Protege a tus atletas con tecnología de IA de última generación. Análisis postural preciso, alertas tempranas y seguimiento continuo.</p>
+      <div class="auth-stats">
+        <div class="auth-stat"><span class="auth-stat-value">94%</span><span class="auth-stat-label">Precisión</span></div>
+        <div class="auth-stat"><span class="auth-stat-value">78%</span><span class="auth-stat-label">Lesiones evitadas</span></div>
+        <div class="auth-stat"><span class="auth-stat-value">2.4K</span><span class="auth-stat-label">Atletas activos</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="auth-form-container" style="align-items:flex-start;padding-top:3rem;overflow-y:auto">
+    <div class="auth-form-box">
+      <img class="brand-image mobile-brand" src="../logo_prevenIA.png" alt="PrevenIA — Anticipa riesgos, protege vidas">
+      <h2>Crear cuenta</h2>
+      <p>Regístrate como profesional de la salud o entrenador</p>
+
+      <div id="reg-error" class="alert alert-danger mb-4 hidden">
+        <svg class="alert-icon" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="reg-error-msg">Error al crear la cuenta.</span>
+      </div>
+
+      <form id="register-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Nombre *</label>
+            <input type="text" id="first_name" class="form-control" placeholder="Juan" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Apellido *</label>
+            <input type="text" id="last_name" class="form-control" placeholder="García" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Correo electrónico *</label>
+          <div class="input-group">
+            <svg class="input-icon" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <input type="email" id="reg-email" class="form-control" placeholder="correo@ejemplo.com" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Rol profesional *</label>
+          <select id="role" class="form-control" required>
+            <option value="">Selecciona tu rol...</option>
+            <option value="medico">Médico / Fisioterapeuta</option>
+            <option value="entrenador">Entrenador Deportivo</option>
+          </select>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Institución</label>
+            <input type="text" id="institution" class="form-control" placeholder="Hospital, Club, etc.">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Especialidad</label>
+            <input type="text" id="specialty" class="form-control" placeholder="Medicina deportiva">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Número de cédula / licencia</label>
+          <input type="text" id="license_number" class="form-control" placeholder="Opcional">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Contraseña *</label>
+          <div class="input-group">
+            <svg class="input-icon" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input type="password" id="reg-password" class="form-control" placeholder="Mínimo 8 caracteres" required>
+            <button type="button" class="input-toggle" onclick="togglePwd('reg-password')">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Confirmar contraseña *</label>
+          <div class="input-group">
+            <svg class="input-icon" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <input type="password" id="reg-password2" class="form-control" placeholder="Repite la contraseña" required>
+          </div>
+          <span class="form-error hidden" id="pwd-match-error">Las contraseñas no coinciden.</span>
+        </div>
+
+        <div class="flex items-start gap-2 mb-4">
+          <input type="checkbox" id="terms" style="width:16px;height:16px;margin-top:2px;cursor:pointer" required>
+          <label for="terms" class="text-sm" style="cursor:pointer;color:var(--gray-600);line-height:1.5">
+            Acepto los <a href="#" class="text-primary font-semibold">Términos de Uso</a> y la
+            <a href="#" class="text-primary font-semibold">Política de Privacidad</a> de PrevenIA
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="reg-btn">
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+          Crear mi cuenta
+        </button>
+      </form>
+
+      <div class="divider"></div>
+      <p class="text-sm text-center" style="color:var(--gray-500)">
+        ¿Ya tienes cuenta?
+        <a href="login.html" class="text-primary font-semibold">Inicia sesión</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script>
+  function togglePwd(id) {
+    const el = document.getElementById(id);
+    el.type = el.type === 'password' ? 'text' : 'password';
+  }
+
+  document.getElementById('register-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = document.getElementById('reg-btn');
+
+    const pwd = document.getElementById('reg-password').value;
+    const pwd2 = document.getElementById('reg-password2').value;
+    const terms = document.getElementById('terms').checked;
+
+    document.getElementById('pwd-match-error').classList.add('hidden');
+    document.getElementById('reg-error').classList.add('hidden');
+
+    if (pwd !== pwd2) {
+      document.getElementById('pwd-match-error').classList.remove('hidden');
+      return;
+    }
+    if (!terms) {
+      alert('Debes aceptar los términos de uso para continuar.');
+      return;
+    }
+
+    const payload = {
+      first_name: document.getElementById('first_name').value.trim(),
+      last_name: document.getElementById('last_name').value.trim(),
+      email: document.getElementById('reg-email').value.trim(),
+      role: document.getElementById('role').value,
+      institution: document.getElementById('institution').value,
+      specialty: document.getElementById('specialty').value,
+      license_number: document.getElementById('license_number').value,
+      password: pwd,
+      password_confirm: pwd2,
+    };
+
+    btn.classList.add('loading');
+    btn.disabled = true;
+    btn.textContent = 'Creando cuenta...';
+
+    try {
+      await api.register(payload);
+      window.location.href = 'dashboard.html';
+    } catch (err) {
+      document.getElementById('reg-error').classList.remove('hidden');
+      let message = err.message || 'Error al crear la cuenta.';
+      try {
+        const detail = JSON.parse(message);
+        message = detail.detail || Object.values(detail).flat().join(' ');
+      } catch {}
+      document.getElementById('reg-error-msg').textContent = message;
+      btn.classList.remove('loading');
+      btn.disabled = false;
+      btn.innerHTML = '<svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg> Crear mi cuenta';
+    }
+  });
+</script>
+</body>
+</html>

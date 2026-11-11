@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrevenIA — Iniciar Sesión</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="auth-page">
+
+    <!-- HERO SIDE -->
+    <div class="auth-hero">
+      <div class="auth-hero-content">
+        <div class="auth-hero-logo">
+          <img class="brand-image" src="../logo_prevenIA.png" alt="PrevenIA — Anticipa riesgos, protege vidas">
+        </div>
+        <h1>Prevención inteligente de lesiones deportivas</h1>
+        <p>Sistema de análisis postural con IA para detectar y prevenir lesiones antes de que ocurran.</p>
+        <div class="auth-stats">
+          <div class="auth-stat">
+            <span class="auth-stat-value">94%</span>
+            <span class="auth-stat-label">Precisión IA</span>
+          </div>
+          <div class="auth-stat">
+            <span class="auth-stat-value">2.4K</span>
+            <span class="auth-stat-label">Atletas</span>
+          </div>
+          <div class="auth-stat">
+            <span class="auth-stat-value">78%</span>
+            <span class="auth-stat-label">Lesiones evitadas</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM SIDE -->
+    <div class="auth-form-container">
+      <div class="auth-form-box">
+
+        <!-- Mobile logo -->
+        <img class="brand-image mobile-brand" src="../logo_prevenIA.png" alt="PrevenIA — Anticipa riesgos, protege vidas">
+
+        <h2>Bienvenido de vuelta</h2>
+        <p>Ingresa tus credenciales para acceder al sistema</p>
+
+        <form id="login-form" novalidate>
+
+          <div id="error-alert" class="alert alert-danger mb-4 hidden">
+            <svg class="alert-icon" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span id="error-msg">Correo o contraseña incorrectos.</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Correo electrónico</label>
+            <div class="input-group">
+              <svg class="input-icon" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <input type="email" id="email" class="form-control" placeholder="correo@ejemplo.com" required autocomplete="email">
+            </div>
+            <span class="form-error hidden" id="email-error">Ingresa un correo válido.</span>
+          </div>
+
+          <div class="form-group">
+            <div class="flex justify-between items-center" style="margin-bottom:.4rem">
+              <label class="form-label" style="margin:0">Contraseña</label>
+              <a href="forgot-password.html" class="text-sm text-primary" style="font-weight:600">¿Olvidaste tu contraseña?</a>
+            </div>
+            <div class="input-group">
+              <svg class="input-icon" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <input type="password" id="password" class="form-control" placeholder="••••••••" required autocomplete="current-password">
+              <button type="button" class="input-toggle" id="toggle-pwd">
+                <svg id="eye-icon" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <span class="form-error hidden" id="pwd-error">La contraseña debe tener al menos 8 caracteres.</span>
+          </div>
+
+          <div class="flex items-center gap-2 mb-4">
+            <input type="checkbox" id="remember" style="width:16px;height:16px;cursor:pointer">
+            <label for="remember" class="text-sm" style="cursor:pointer;color:var(--gray-600)">Recordarme en este dispositivo</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg" id="login-btn">
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+            Iniciar sesión
+          </button>
+        </form>
+
+        <div class="divider"></div>
+
+        <p class="text-sm text-center" style="color:var(--gray-500)">
+          ¿No tienes cuenta?
+          <a href="register.html" class="text-primary font-semibold">Regístrate aquí</a>
+        </p>
+
+        <div class="mt-4 text-center">
+          <p class="text-xs text-gray">Roles disponibles en el sistema:</p>
+          <div class="flex gap-2 justify-end mt-2" style="justify-content:center">
+            <span class="badge badge-blue">Médico / Fisioterapeuta</span>
+            <span class="badge badge-green">Entrenador</span>
+            <span class="badge badge-gray">Atleta</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script>
+    // Toggle password
+    const pwd = document.getElementById('password');
+    document.getElementById('toggle-pwd').addEventListener('click', () => {
+      pwd.type = pwd.type === 'password' ? 'text' : 'password';
+    });
+
+    // Form submit
+    document.getElementById('login-form').addEventListener('submit', async e => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      let valid = true;
+
+      document.getElementById('email-error').classList.add('hidden');
+      document.getElementById('pwd-error').classList.add('hidden');
+      document.getElementById('error-alert').classList.add('hidden');
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        document.getElementById('email-error').classList.remove('hidden');
+        document.getElementById('email').classList.add('is-invalid');
+        valid = false;
+      } else {
+        document.getElementById('email').classList.remove('is-invalid');
+      }
+
+      if (!password || password.length < 6) {
+        document.getElementById('pwd-error').classList.remove('hidden');
+        document.getElementById('password').classList.add('is-invalid');
+        valid = false;
+      } else {
+        document.getElementById('password').classList.remove('is-invalid');
+      }
+
+      if (!valid) return;
+
+      const btn = document.getElementById('login-btn');
+      btn.classList.add('loading');
+      btn.innerHTML = '<svg class="spin" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Iniciando sesión...';
+
+      try {
+        await api.login(email, password);
+        window.location.href = 'dashboard.html';
+      } catch(err) {
+        document.getElementById('error-alert').classList.remove('hidden');
+        let message = err instanceof TypeError && err.message === 'Failed to fetch'
+          ? 'No se pudo conectar con el servidor. Verifica que el backend de PrevenIA esté iniciado e intenta de nuevo.'
+          : err.message;
+        try {
+          const detail = JSON.parse(message);
+          message = detail.detail || Object.values(detail).flat().join(' ');
+        } catch {}
+        document.getElementById('error-msg').textContent = message;
+        btn.classList.remove('loading');
+        btn.innerHTML = '<svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg> Iniciar sesión';
+      }
+    });
+
+    // Add spin animation
+    const style = document.createElement('style');
+    style.textContent = '.spin { animation: spin 1s linear infinite; } @keyframes spin { to { transform: rotate(360deg); } }';
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>

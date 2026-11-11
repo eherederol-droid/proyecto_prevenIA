@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrevenIA — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css?v=20261111-exercise-reference-v21">
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- SIDEBAR OVERLAY (mobile) -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <img class="brand-image" src="../logo_prevenIA.png" alt="PrevenIA — Anticipa riesgos, protege vidas">
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="sidebar-section-label">Principal</span>
+      <button class="nav-item active" onclick="navigate('dashboard')">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </button>
+      <button class="nav-item" onclick="navigate('athletes')">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Atletas
+      </button>
+      <button class="nav-item" onclick="navigate('posture')">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><path d="M9 20V11l-2-3h10l-2 3v9"/><path d="M12 11v4"/></svg>
+        Análisis Postural
+      </button>
+      <button class="nav-item" onclick="navigate('assessments')">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Evaluaciones
+      </button>
+      <button class="nav-item" onclick="navigate('alerts')">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        Alertas
+        <span class="nav-badge">0</span>
+      </button>
+
+      <span class="sidebar-section-label">Análisis</span>
+      <button class="nav-item" onclick="navigate('reports')">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Reportes
+      </button>
+      <button class="nav-item" onclick="navigate('risk-analysis')">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Análisis de Riesgo
+      </button>
+      <button class="nav-item" onclick="navigate('history')">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Historial Clínico
+      </button>
+
+      <span class="sidebar-section-label">Administración</span>
+      <button class="nav-item" onclick="navigate('schedule')">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Agenda de Citas
+      </button>
+      <button class="nav-item" onclick="navigate('settings')">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Configuración
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="dropdown w-full">
+        <div class="user-mini" onclick="document.getElementById('user-dd').classList.toggle('open')">
+          <div class="avatar" id="user-avatar">CL</div>
+          <div class="user-info">
+            <div class="user-name" id="user-display-name">Dr. Carlos López</div>
+            <div class="user-role" id="user-display-role">Médico / Fisioterapeuta</div>
+          </div>
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="dropdown-menu" id="user-dd" style="bottom:100%;top:auto;margin-bottom:.5rem">
+          <button class="dropdown-item" onclick="navigate('profile')">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Mi Perfil
+          </button>
+          <button class="dropdown-item" onclick="navigate('settings')">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            Configuración
+          </button>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item danger" onclick="logout()">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Cerrar sesión
+          </button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle menu">
+        <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <span class="topbar-title" id="page-title">Dashboard</span>
+      <div class="topbar-actions">
+        <div class="search-box" id="topbar-search">
+          <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="search" placeholder="Buscar atletas...">
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-icon btn-ghost" onclick="document.getElementById('notif-dd').classList.toggle('open')" style="position:relative">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span style="position:absolute;top:4px;right:4px;width:8px;height:8px;background:var(--danger);border-radius:50%;border:2px solid white"></span>
+          </button>
+          <div class="dropdown-menu" id="notif-dd" style="min-width:320px;right:0">
+            <div id="notification-count" style="padding:.75rem 1rem;border-bottom:1px solid var(--gray-100);font-weight:700;font-size:.9rem">Notificaciones</div>
+            <div id="notification-list">
+            <div class="dropdown-item" style="flex-direction:column;align-items:flex-start;gap:.2rem;padding:.875rem 1rem">
+              <div style="display:flex;gap:.5rem;align-items:center;width:100%">
+                <span style="width:8px;height:8px;border-radius:50%;background:var(--danger);flex-shrink:0"></span>
+                <strong class="text-sm">Riesgo alto detectado</strong>
+                <span class="text-xs text-gray" style="margin-left:auto">Ahora</span>
+              </div>
+              <p class="text-sm text-gray" style="padding-left:1rem">María González — Rodilla izquierda (72/100)</p>
+            </div>
+            <div class="dropdown-item" style="flex-direction:column;align-items:flex-start;gap:.2rem;padding:.875rem 1rem">
+              <div style="display:flex;gap:.5rem;align-items:center;width:100%">
+                <span style="width:8px;height:8px;border-radius:50%;background:var(--warning);flex-shrink:0"></span>
+                <strong class="text-sm">Cita en 30 min</strong>
+                <span class="text-xs text-gray" style="margin-left:auto">12:30</span>
+              </div>
+              <p class="text-sm text-gray" style="padding-left:1rem">Pedro Ramírez — Evaluación postural</p>
+            </div>
+            <div class="dropdown-item" style="flex-direction:column;align-items:flex-start;gap:.2rem;padding:.875rem 1rem">
+              <div style="display:flex;gap:.5rem;align-items:center;width:100%">
+                <span style="width:8px;height:8px;border-radius:50%;background:var(--primary);flex-shrink:0"></span>
+                <strong class="text-sm">Nuevo atleta registrado</strong>
+                <span class="text-xs text-gray" style="margin-left:auto">Ayer</span>
+              </div>
+              <p class="text-sm text-gray" style="padding-left:1rem">Luis Torres se ha incorporado al equipo</p>
+            </div>
+            </div>
+            <div style="padding:.75rem 1rem;border-top:1px solid var(--gray-100);text-align:center">
+              <button class="btn btn-ghost btn-sm w-full" onclick="navigate('alerts')">Ver todas las alertas</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- PAGES CONTAINER -->
+    <div class="page-content">
+
+      <!-- ==================== PAGE: DASHBOARD ==================== -->
+      <div id="page-dashboard" class="page active">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h1 class="text-2xl font-bold" style="color:var(--gray-900)">Panel de Control</h1>
+            <p class="text-sm text-gray mt-1">Resumen general del sistema — Octubre 2026</p>
+          </div>
+          <button class="btn btn-primary" onclick="navigate('posture')">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Nueva Evaluación
+          </button>
+        </div>
+
+        <!-- STAT CARDS -->
+        <div class="grid grid-4 mb-6">
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-label">Atletas Activos</span>
+              <div class="stat-icon blue">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+            </div>
+            <div class="stat-value" id="dashboard-athlete-count">—</div>
+            <div class="stat-change up">
+              <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+              +12% este mes
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-label">Evaluaciones Hoy</span>
+              <div class="stat-icon green">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              </div>
+            </div>
+            <div class="stat-value" id="dashboard-assessments-today">—</div>
+            <div class="stat-change up">
+              <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+              +3 vs ayer
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-label">Alertas Activas</span>
+              <div class="stat-icon red">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              </div>
+            </div>
+            <div class="stat-value" id="dashboard-active-alerts">—</div>
+            <div class="stat-change down">
+              <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="18 9 12 15 6 9"/></svg>
+              -2 vs ayer
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-label">Lesiones Prevenidas</span>
+              <div class="stat-icon amber">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+            </div>
+            <div class="stat-value">—</div>
+            <div class="stat-change up">
+              <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+              Sin datos registrados
+            </div>
+          </div>
+        </div>
+
+        <!-- CHARTS ROW -->
+        <div class="grid grid-2 mb-6">
+          <!-- Evaluaciones por zona -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Evaluaciones por Zona Corporal</span>
+              <span class="badge badge-blue">Este mes</span>
+            </div>
+            <div class="card-body">
+              <div class="bar-chart">
+                <div class="bar-item" data-zone="knee">
+                  <div class="bar-value">38</div>
+                  <div class="bar-fill" style="height:80%;background:var(--danger)"></div>
+                  <div class="bar-label">Rodilla</div>
+                </div>
+                <div class="bar-item" data-zone="shoulder">
+                  <div class="bar-value">29</div>
+                  <div class="bar-fill" style="height:60%;background:var(--warning)"></div>
+                  <div class="bar-label">Hombro</div>
+                </div>
+                <div class="bar-item" data-zone="hip">
+                  <div class="bar-value">24</div>
+                  <div class="bar-fill" style="height:50%"></div>
+                  <div class="bar-label">Cadera</div>
+                </div>
+                <div class="bar-item" data-zone="ankle">
+                  <div class="bar-value">19</div>
+                  <div class="bar-fill" style="height:40%"></div>
+                  <div class="bar-label">Tobillo</div>
+                </div>
+                <div class="bar-item" data-zone="spine">
+                  <div class="bar-value">16</div>
+                  <div class="bar-fill" style="height:33%;background:var(--accent)"></div>
+                  <div class="bar-label">Columna</div>
+                </div>
+                <div class="bar-item" data-zone="elbow">
+                  <div class="bar-value">11</div>
+                  <div class="bar-fill" style="height:22%;background:var(--accent)"></div>
+                  <div class="bar-label">Codo</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Risk distribution -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Distribución de Riesgo</span>
+              <span class="badge badge-gray">247 atletas</span>
+            </div>
+            <div class="card-body" style="display:flex;align-items:center;gap:2rem">
+              <div style="position:relative;width:140px;height:140px;flex-shrink:0">
+                <div class="donut-placeholder"></div>
+                <div class="donut-label" style="position:absolute;inset:30px;display:flex;flex-direction:column;align-items:center;justify-content:center">
+                  <span style="font-size:1.25rem;font-weight:800;color:var(--gray-900)">247</span>
+                  <small style="font-size:.7rem;color:var(--gray-500)">atletas</small>
+                </div>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:.75rem">
+                <div>
+                  <div class="flex justify-between text-sm mb-1">
+                    <span class="flex items-center gap-2"><span style="width:10px;height:10px;border-radius:2px;background:var(--danger);display:inline-block"></span>Alto Riesgo</span>
+                    <strong>87 (35%)</strong>
+                  </div>
+                  <div class="progress-bar"><div class="progress-fill red" style="width:35%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1">
+                    <span class="flex items-center gap-2"><span style="width:10px;height:10px;border-radius:2px;background:var(--warning);display:inline-block"></span>Riesgo Medio</span>
+                    <strong>62 (25%)</strong>
+                  </div>
+                  <div class="progress-bar"><div class="progress-fill amber" style="width:25%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1">
+                    <span class="flex items-center gap-2"><span style="width:10px;height:10px;border-radius:2px;background:var(--accent);display:inline-block"></span>Bajo Riesgo</span>
+                    <strong>98 (40%)</strong>
+                  </div>
+                  <div class="progress-bar"><div class="progress-fill green" style="width:40%"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RECENT ATHLETES TABLE + ALERTS -->
+        <div class="grid grid-2">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Atletas Recientes</span>
+              <button class="btn btn-ghost btn-sm" onclick="navigate('athletes')">Ver todos</button>
+            </div>
+            <div class="table-wrapper">
+              <table class="table">
+                <thead>
+                  <tr><th>Atleta</th><th>Deporte</th><th>Riesgo</th><th>Última Eval.</th></tr>
+                </thead>
+                <tbody id="recent-athletes-body">
+                  <tr>
+                    <td><div class="flex items-center gap-2"><div class="avatar" style="width:32px;height:32px;font-size:.75rem">MG</div><span class="table-name">María González</span></div></td>
+                    <td class="text-gray text-sm">Fútbol</td>
+                    <td><span class="badge risk-high">Alto</span></td>
+                    <td class="text-sm text-gray">Hoy, 09:30</td>
+                  </tr>
+                  <tr>
+                    <td><div class="flex items-center gap-2"><div class="avatar" style="width:32px;height:32px;font-size:.75rem;background:var(--accent)">PR</div><span class="table-name">Pedro Ramírez</span></div></td>
+                    <td class="text-gray text-sm">Atletismo</td>
+                    <td><span class="badge risk-medium">Medio</span></td>
+                    <td class="text-sm text-gray">Hoy, 08:15</td>
+                  </tr>
+                  <tr>
+                    <td><div class="flex items-center gap-2"><div class="avatar" style="width:32px;height:32px;font-size:.75rem;background:#7C3AED">LT</div><span class="table-name">Luis Torres</span></div></td>
+                    <td class="text-gray text-sm">Natación</td>
+                    <td><span class="badge risk-low">Bajo</span></td>
+                    <td class="text-sm text-gray">Ayer</td>
+                  </tr>
+                  <tr>
+                    <td><div class="flex items-center gap-2"><div class="avatar" style="width:32px;height:32px;font-size:.75rem;background:#F59E0B">AM</div><span class="table-name">Ana Martínez</span></div></td>
+                    <td class="text-gray text-sm">Basketball</td>
+                    <td><span class="badge risk-high">Alto</span></td>
+                    <td class="text-sm text-gray">Ayer</td>
+                  </tr>
+                  <tr>
+                    <td><div class="flex items-center gap-2"><div class="avatar" style="width:32px;height:32px;font-size:.75rem;background:#EC4899">SC</div><span class="table-name">Sofía Castro</span></div></td>
+                    <td class="text-gray text-sm">Gimnasia</td>
+                    <td><span class="badge risk-low">Bajo</span></td>
+                    <td class="text-sm text-gray">Hace 2 días</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Active Alerts -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Alertas Activas</span>
+              <button class="btn btn-ghost btn-sm" onclick="navigate('alerts')">Ver todas</button>
+            </div>
+            <div class="card-body" id="recent-alerts-list" style="display:flex;flex-direction:column;gap:.75rem">
+              <div class="alert alert-danger">
+                <div class="alert-icon">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </div>
+                <div>
+                  <strong class="text-sm">Riesgo Crítico — María González</strong>
+                  <p class="text-xs mt-1">Ángulo de rodilla izquierda: 142° (crítico). Requiere evaluación inmediata.</p>
+                </div>
+              </div>
+              <div class="alert alert-warning">
+                <div class="alert-icon">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </div>
+                <div>
+                  <strong class="text-sm">Alerta Postural — Ana Martínez</strong>
+                  <p class="text-xs mt-1">Asimetría de cadera detectada en 3 sesiones consecutivas.</p>
+                </div>
+              </div>
+              <div class="alert alert-info">
+                <div class="alert-icon">
+                  <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                </div>
+                <div>
+                  <strong class="text-sm">Seguimiento Pendiente — Pedro Ramírez</strong>
+                  <p class="text-xs mt-1">Evaluación de seguimiento programada para mañana 10:00 AM.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== PAGE: ATHLETES ==================== -->
+      <div id="page-athletes" class="page hidden">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h1 class="text-2xl font-bold" style="color:var(--gray-900)">Gestión de Atletas</h1>
+            <p class="text-sm text-gray mt-1">247 atletas registrados</p>
+          </div>
+          <button class="btn btn-primary" onclick="openModal('modal-add-athlete')">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Registrar Atleta
+          </button>
+        </div>
+
+        <div class="card mb-4">
+          <div class="card-body" style="padding:1rem">
+            <div class="flex gap-3 flex-wrap items-center">
+              <div class="search-box" style="flex:1;min-width:200px">
+                <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="search" placeholder="Buscar por nombre, deporte..." style="width:100%">
+              </div>
+              <select class="form-control" id="athlete-sport-filter" style="width:160px;padding:.55rem .875rem">
+                <option value="">Todos los deportes</option>
+                <option>Fútbol</option>
+                <option>Atletismo</option>
+                <option>Natación</option>
+                <option>Basketball</option>
+                <option>Gimnasia</option>
+                <option>Tenis</option>
+                <option>Voleibol</option>
+              </select>
+              <select class="form-control" id="athlete-risk-filter" style="width:140px;padding:.55rem .875rem">
+                <option value="">Todos los riesgos</option>
+                <option>Alto</option>
+                <option>Medio</option>
+                <option>Bajo</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-wrapper">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Atleta</th>
+                  <th>Edad / Género</th>
+                  <th>Deporte</th>
+                  <th>Riesgo</th>
+                  <th>Evaluaciones</th>
+                  <th>Última Sesión</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody id="athletes-table-body">
+                <tr>
+                  <td><div class="flex items-center gap-2"><div class="avatar" style="width:36px;height:36px;font-size:.8rem">MG</div><div><div class="table-name">María González</div><div class="text-xs text-gray">ID #1001</div></div></div></td>
+                  <td class="text-sm text-gray">24 / F</td>
+                  <td class="text-sm">Fútbol</td>
+                  <td><span class="badge risk-high">Alto</span></td>
+                  <td class="text-sm">12 sesiones</td>
+                  <td class="text-sm text-gray">02/10/2026</td>
+                  <td>
+                    <div class="flex gap-1">
+                      <button class="btn btn-icon btn-ghost btn-sm" title="Ver perfil" onclick="navigate('posture')">
+                        <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                      </button>
+                      <button class="btn btn-icon btn-ghost btn-sm" title="Evaluar postura" onclick="navigate('posture')">
+                        <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><path d="M9 20V11l-2-3h10l-2 3v9"/></svg>
+                      </button>
+                      <button class="btn btn-icon btn-ghost btn-sm" title="Editar">
+                        <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><div class="flex items-center gap-2"><div class="avatar" style="width:36px;height:36px;font-size:.8rem;background:var(--accent)">PR</div><div><div class="table-name">Pedro Ramírez</div><div class="text-xs text-gray">ID #1002</div></div></div></td>
+                  <td class="text-sm text-gray">31 / M</td>
+                  <td class="text-sm">Atletismo</td>
+                  <td><span class="badge risk-medium">Medio</span></td>
+                  <td class="text-sm">8 sesiones</td>
+                  <td class="text-sm text-gray">02/10/2026</td>
+                  <td><div class="flex gap-1"><button class="btn btn-icon btn-ghost btn-sm"><svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="btn btn-icon btn-ghost btn-sm" onclick="navigate('posture')"><svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><path d="M9 20V11l-2-3h10l-2 3v9"/></svg></button><button class="btn btn-icon btn-ghost btn-sm"><svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button></div></td>
+                </tr>
+                <tr>
+                  <td><div class="flex items-center gap-2"><div class="avatar" style="width:36px;height:36px;font-size:.8rem;background:#7C3AED">LT</div><div><div class="table-name">Luis Torres</div><div class="text-xs text-gray">ID #1003</div></div></div></td>
+                  <td class="text-sm text-gray">22 / M</td>
+                  <td class="text-sm">Natación</td>
+                  <td><span class="badge risk-low">Bajo</span></td>
+                  <td class="text-sm">5 sesiones</td>
+                  <td class="text-sm text-gray">01/10/2026</td>
+                  <td><div class="flex gap-1"><button class="btn btn-icon btn-ghost btn-sm"><svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="btn btn-icon btn-ghost btn-sm" onclick="navigate('posture')"><svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><path d="M9 20V11l-2-3h10l-2 3v9"/></svg></button><button class="btn btn-icon btn-ghost btn-sm"><svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button></div></td>
+                </tr>
+                <tr>
+                  <td><div class="flex items-center gap-2"><div class="avatar" style="width:36px;height:36px;font-size:.8rem;background:#F59E0B">AM</div><div><div class="table-name">Ana Martínez</div><div class="text-xs text-gray">ID #1004</div></div></div></td>
+                  <td class="text-sm text-gray">27 / F</td>
+                  <td class="text-sm">Basketball</td>
+                  <td><span class="badge risk-high">Alto</span></td>
+                  <td class="text-sm">15 sesiones</td>
+                  <td class="text-sm text-gray">01/10/2026</td>
+                  <td><div class="flex gap-1"><button class="btn btn-icon btn-ghost btn-sm"><svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="btn btn-icon btn-ghost btn-sm" onclick="navigate('posture')"><svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><path d="M9 20V11l-2-3h10l-2 3v9"/></svg></button><button class="btn btn-icon btn-ghost btn-sm"><svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button></div></td>
+                </tr>
+                <tr>
+                  <td><div class="flex items-center gap-2"><div class="avatar" style="width:36px;height:36px;font-size:.8rem;background:#EC4899">SC</div><div><div class="table-name">Sofía Castro</div><div class="text-xs text-gray">ID #1005</div></div></div></td>
+                  <td class="text-sm text-gray">19 / F</td>
+                  <td class="text-sm">Gimnasia</td>
+                  <td><span class="badge risk-low">Bajo</span></td>
+                  <td class="text-sm">3 sesiones</td>
+                  <td class="text-sm text-gray">30/09/2026</td>
+                  <td><div class="flex gap-1"><button class="btn btn-icon btn-ghost btn-sm"><svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="btn btn-icon btn-ghost btn-sm" onclick="navigate('posture')"><svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><path d="M9 20V11l-2-3h10l-2 3v9"/></svg></button><button class="btn btn-icon btn-ghost btn-sm"><svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer flex justify-between items-center text-sm text-gray">
+            <span>Mostrando 5 de 247 atletas</span>
+            <div class="flex gap-1">
+              <button class="btn btn-ghost btn-sm">Anterior</button>
+              <button class="btn btn-primary btn-sm">1</button>
+              <button class="btn btn-ghost btn-sm">2</button>
+              <button class="btn btn-ghost btn-sm">3</button>
+              <button class="btn btn-ghost btn-sm">Siguiente</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== PAGE: POSTURE ANALYSIS ==================== -->
+      <div id="page-posture" class="page hidden">
+        <div class="flex items-center justify-between mb-4 flex-wrap gap-3">
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="text-2xl font-bold" style="color:var(--gray-900)">Análisis Biomecánico Deportivo</h1>
+              <span class="badge badge-primary">OpenCV + MediaPipe</span>
+            </div>
+            <p class="text-sm text-gray mt-1">Escaneo corporal en tiempo real, cinemática articular y prevención de lesiones</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button class="btn btn-outline" id="btn-upload-img">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+              Cargar Imagen
+            </button>
+            <button class="btn btn-outline camera-switch-button" id="btn-switch-camera" type="button" aria-label="Usar cámara trasera">
+              Usar cámara trasera
+            </button>
+            <button class="btn btn-outline" id="btn-athlete-history" type="button">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg>
+              Historial del Atleta
+            </button>
+            <button class="btn btn-primary" id="btn-start-camera">
+              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              Activar Cámara
+            </button>
+          </div>
+        </div>
+
+        <!-- Evaluation Setup & Control Card -->
+        <div class="card mb-4">
+          <div class="card-body" style="padding:1rem">
+            <div class="flex gap-3 items-center flex-wrap mb-3">
+              <label class="form-label" style="margin:0;white-space:nowrap;font-weight:600">Atleta:</label>
+              <select class="form-control" id="assessment-athlete" style="flex:1;min-width:220px;max-width:320px" required>
+                <option value="">Cargando atletas...</option>
+              </select>
+              <button class="btn btn-outline btn-sm hidden" id="btn-retry-athletes" type="button">Reintentar</button>
+
+              <label class="form-label" style="margin:0;white-space:nowrap;font-weight:600">Ejercicio:</label>
+              <select class="form-control" id="assessment-exercise" aria-label="Ejercicio a evaluar" style="min-width:200px">
+                <optgroup label="Ejercicios Biomecánicos Clave">
+                  <option value="squat" selected>1. Sentadillas (Squats)</option>
+                  <option value="push_up">2. Flexiones de brazos (Push-ups)</option>
+                  <option value="lunge">3. Zancadas (Lunges)</option>
+                  <option value="arm_raise">4. Elevaciones de brazos (Arm Raises)</option>
+                  <option value="joint_mobility">5. Movilidad articular (Mobility ROM)</option>
+                </optgroup>
+                <optgroup label="Evaluaciones Adicionales">
+                  <option value="general">Postura general bípeda</option>
+                  <option value="deadlift">Peso muerto</option>
+                  <option value="glute_bridge">Puente de glúteos</option>
+                  <option value="calf_raise">Elevación de pantorrillas</option>
+                  <option value="step_up">Subida al cajón</option>
+                  <option value="jump_landing">Salto y aterrizaje</option>
+                  <option value="overhead_press">Press sobre la cabeza</option>
+                  <option value="biceps_curl">Curl de bíceps</option>
+                  <option value="row">Remo</option>
+                  <option value="triceps_dip">Fondos de tríceps</option>
+                  <option value="plank">Plancha frontal</option>
+                  <option value="side_plank">Plancha lateral</option>
+                  <option value="crunch">Abdominales</option>
+                  <option value="burpee">Burpee</option>
+                  <option value="jumping_jack">Jumping jack</option>
+                  <option value="mountain_climber">Escaladores</option>
+                </optgroup>
+              </select>
+
+              <label class="form-label" style="margin:0;white-space:nowrap;font-weight:600">Vista:</label>
+              <select class="form-control" id="assessment-view-type" style="width:150px">
+                <option value="frontal">Vista Frontal</option>
+                <option value="lateral">Vista Lateral</option>
+                <option value="posterior">Vista Posterior</option>
+                <option value="dynamic">En Movimiento</option>
+              </select>
+
+              <button class="btn btn-outline btn-sm" id="btn-open-thresholds" type="button" title="Configurar umbrales biomecánicos">
+                <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                Umbrales
+              </button>
+            </div>
+
+            <section class="exercise-guide" id="exercise-guide" aria-labelledby="exercise-guide-title" aria-live="polite">
+              <div class="exercise-guide-heading">
+                <div>
+                  <p class="exercise-guide-eyebrow">GUÍA RÁPIDA</p>
+                  <h2 id="exercise-guide-title">Cómo hacer el ejercicio</h2>
+                </div>
+                <span class="exercise-guide-camera" id="exercise-guide-camera"></span>
+              </div>
+              <p class="exercise-guide-tip" id="exercise-guide-tip"></p>
+              <div class="exercise-guide-illustration" id="exercise-guide-illustration"></div>
+              <ol class="exercise-guide-steps" id="exercise-guide-steps"></ol>
+              <p class="exercise-guide-safety">Usa la guía como referencia. Si sientes dolor, detén el ejercicio y consulta a un profesional.</p>
+            </section>
+
+            <!-- Session action controls -->
+            <div class="biomech-controls-bar">
+              <button class="btn btn-success" id="btn-eval-start" type="button">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Iniciar Evaluación
+              </button>
+              <button class="btn btn-outline" id="btn-eval-pause" type="button" style="display:none">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                Pausar
+              </button>
+              <button class="btn btn-outline" id="btn-eval-resume" type="button" style="display:none">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Reanudar
+              </button>
+              <button class="btn btn-danger" id="btn-eval-finish" type="button" style="display:none">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14"/></svg>
+                Finalizar Evaluación
+              </button>
+              <button class="btn btn-primary" id="btn-analyze" type="button" style="margin-left:auto">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Analizar Fotograma Actual
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="posture-grid">
+          <!-- Real-Time Camera & Biomechanical HUD -->
+          <div>
+            <div class="posture-canvas-area" id="camera-area">
+              <div class="posture-placeholder" id="camera-placeholder">
+                <svg width="64" height="64" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="4" r="2"/><path d="M9 20V11l-2-3h10l-2 3v9"/><path d="M12 11v4"/></svg>
+                <p class="font-semibold text-lg" style="color:#f8fafc">Escáner Biomecánico Listo</p>
+                <p class="text-sm mt-1" style="color:#94a3b8">Activa la cámara o carga una imagen/video para iniciar el seguimiento del esqueleto</p>
+                <div class="flex gap-2 justify-center mt-4">
+                  <button class="btn btn-primary" onclick="document.getElementById('btn-start-camera').click()">
+                    Activar Cámara
+                  </button>
+                  <button class="btn btn-outline" style="color:white;border-color:rgba(255,255,255,.4)" onclick="document.getElementById('btn-upload-img').click()">
+                    Cargar Archivo
+                  </button>
+                </div>
+              </div>
+
+              <video id="camera-video" style="display:none" autoplay playsinline></video>
+              <img id="camera-image" alt="Captura biomecánica" style="display:none">
+              <canvas id="posture-canvas" class="posture-overlay"></canvas>
+              <div id="pose-live-status" class="pose-live-status" style="display:none" role="status" aria-live="polite">
+                <span class="pose-live-indicator" aria-hidden="true"></span>
+                <span id="pose-live-message"></span>
+              </div>
+
+              <!-- Top Biomechanical HUD Bar -->
+              <div class="biomech-hud-top" id="biomech-hud-top" style="display:none">
+                <div class="flex gap-2 flex-wrap">
+                  <div class="biomech-hud-pill">
+                    <span id="hud-athlete-name">Atleta</span>
+                    <span style="opacity:.6">·</span>
+                    <span id="hud-exercise-name" style="color:#38bdf8">Sentadilla</span>
+                  </div>
+                  <div class="biomech-hud-pill">
+                    <span class="biomech-rec-dot" id="hud-rec-dot"></span>
+                    <span class="biomech-timer" id="hud-stopwatch">00:00</span>
+                  </div>
+                </div>
+
+                <div class="flex gap-2 flex-wrap">
+                  <div class="biomech-hud-pill" id="hud-tracking-pill">
+                    <span id="hud-tracking-dot" style="width:8px;height:8px;border-radius:50%;background:#10b981"></span>
+                    <span id="hud-tracking-status">Detección Óptima</span>
+                  </div>
+                  <div class="biomech-hud-pill" id="hud-error-pill" style="border-color:rgba(239,68,68,.4);background:rgba(239,68,68,.2)">
+                    <span style="color:#ef4444">⚠️</span>
+                    <span id="hud-error-counter">0 Errores</span>
+                  </div>
+                  <div class="biomech-hud-pill text-xs" id="hud-fps-pill" style="color:#94a3b8">
+                    <span id="hud-fps-text">30 FPS · Suavizado</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Floating Biomechanical Segments Panel (Inspired by user reference photo) -->
+              <div class="biomech-hud-right" id="biomech-hud-right" style="display:none" aria-label="Monitoreo segmentario corporal">
+                <div class="text-xs font-bold" style="color:#f8fafc;margin-bottom:.2rem;display:flex;align-items:center;justify-content:space-between">
+                  <span>SEGMENTOS</span>
+                  <span style="font-size:.65rem;color:#38bdf8">TIEMPO REAL</span>
+                </div>
+
+                <!-- Neck / Head -->
+                <div class="biomech-segment-item" id="seg-neck">
+                  <div class="biomech-segment-label">
+                    <span class="biomech-segment-name">Cabeza / Cuello</span>
+                    <span class="biomech-segment-status" id="seg-neck-status">Alineada</span>
+                  </div>
+                  <span class="biomech-segment-angle" id="seg-neck-angle">0°</span>
+                </div>
+
+                <!-- Trunk / Spine -->
+                <div class="biomech-segment-item" id="seg-trunk">
+                  <div class="biomech-segment-label">
+                    <span class="biomech-segment-name">Tronco / Espalda</span>
+                    <span class="biomech-segment-status" id="seg-trunk-status">Neutro</span>
+                  </div>
+                  <span class="biomech-segment-angle" id="seg-trunk-angle">12°</span>
+                </div>
+
+                <!-- Pelvis / Hip -->
+                <div class="biomech-segment-item" id="seg-hip">
+                  <div class="biomech-segment-label">
+                    <span class="biomech-segment-name">Cadera / Pelvis</span>
+                    <span class="biomech-segment-status" id="seg-hip-status">Simétrica</span>
+                  </div>
+                  <span class="biomech-segment-angle" id="seg-hip-angle">98%</span>
+                </div>
+
+                <!-- Arms / Shoulders -->
+                <div class="biomech-segment-item" id="seg-arms">
+                  <div class="biomech-segment-label">
+                    <span class="biomech-segment-name">Hombros / Brazos</span>
+                    <span class="biomech-segment-status" id="seg-arms-status">En rango</span>
+                  </div>
+                  <span class="biomech-segment-angle" id="seg-arms-angle">165°</span>
+                </div>
+
+                <!-- Knees / Legs -->
+                <div class="biomech-segment-item" id="seg-legs">
+                  <div class="biomech-segment-label">
+                    <span class="biomech-segment-name">Piernas / Rodillas</span>
+                    <span class="biomech-segment-status" id="seg-legs-status">Alineadas</span>
+                  </div>
+                  <span class="biomech-segment-angle" id="seg-legs-angle">172°</span>
+                </div>
+              </div>
+
+              <!-- Bottom Real-time Coaching Prompt -->
+              <div class="biomech-bottom-prompt" id="biomech-bottom-prompt" style="display:none">
+                <span style="font-size:1.1rem">💡</span>
+                <span id="biomech-prompt-text">Posición inicial detectada. Inicia el movimiento mostrando el cuerpo completo.</span>
+              </div>
+
+              <div id="pose-legend" class="pose-legend" style="display:none" aria-label="Leyenda del análisis postural">
+                <span><i class="pose-legend-dot pose-legend-normal"></i>Óptimo / En rango</span>
+                <span><i class="pose-legend-dot" style="background:#f59e0b"></i>Atención</span>
+                <span><i class="pose-legend-dot pose-legend-warning"></i>Desviación detectada</span>
+              </div>
+            </div>
+
+            <!-- Single Frame Quick Result (if analyzing single image) -->
+            <div class="card mt-4" id="analysis-result" style="display:none">
+              <div class="card-header">
+                <span class="card-title">Resultado de Fotograma IA</span>
+                <span class="badge badge-green" id="analysis-status">Análisis completado</span>
+              </div>
+              <div class="card-body" id="analysis-result-body">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Lateral Live Biometrics & Quick Gauges -->
+          <div>
+            <!-- Live Risk Gauge -->
+            <div class="card mb-4">
+              <div class="card-header"><span class="card-title">Índice de Riesgo Biomecánico</span></div>
+              <div class="card-body text-center">
+                <div class="risk-gauge" style="margin:0 auto 1rem">
+                  <div class="risk-gauge-track">
+                    <div class="risk-gauge-inner">
+                      <span class="risk-score-val" id="risk-score">—</span>
+                      <span class="risk-score-label">/ 100</span>
+                    </div>
+                  </div>
+                </div>
+                <span class="badge risk-low" id="risk-level" style="font-size:.9rem;padding:.4rem 1rem">Sin análisis</span>
+                <p class="text-sm text-gray mt-2">Estabilidad del seguimiento: <span id="risk-confidence">—</span></p>
+                <div class="mt-3 flex gap-2 justify-center">
+                  <button class="btn btn-outline btn-sm w-full" id="btn-view-full-report" style="display:none" type="button">
+                    <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    Ver Informe Completo
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Live Joint Angles -->
+            <div class="card">
+              <div class="card-header flex justify-between items-center">
+                <span class="card-title">Ángulos Articulares</span>
+                <span class="text-xs text-gray" id="angles-count-badge">En vivo</span>
+              </div>
+              <div class="card-body" style="padding:1rem">
+                <div class="joint-readings" id="joint-readings">
+                  <div class="joint-item">
+                    <div class="joint-name">Rodilla Izquierda</div>
+                    <div class="joint-value">
+                      <span class="joint-angle">175°</span>
+                      <span class="badge risk-low">Normal</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill green" style="width:20%"></div></div>
+                    <div class="text-xs text-gray mt-1">Rango normal: 165°–180°</div>
+                  </div>
+                  <div class="joint-item">
+                    <div class="joint-name">Rodilla Derecha</div>
+                    <div class="joint-value">
+                      <span class="joint-angle">175°</span>
+                      <span class="badge risk-low">Normal</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill green" style="width:20%"></div></div>
+                    <div class="text-xs text-gray mt-1">Rango normal: 165°–180°</div>
+                  </div>
+                  <div class="joint-item">
+                    <div class="joint-name">Cadera / Tronco</div>
+                    <div class="joint-value">
+                      <span class="joint-angle">178°</span>
+                      <span class="badge risk-low">Normal</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill green" style="width:15%"></div></div>
+                    <div class="text-xs text-gray mt-1">Rango normal: 170°–195°</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             COMPREHENSIVE FINAL BIOMECHANICAL REPORT (SECTIONS A TO F)
+             ============================================================ -->
+        <div id="biomech-report-modal" class="biomech-report-modal" style="display:none">
+          <div class="biomech-report-content">
+            <!-- Modal Header -->
+            <div class="biomech-report-header">
+              <div class="flex items-center gap-3">
+                <div style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2rem">
+                  📊
+                </div>
+                <div>
+                  <h2 class="text-xl font-bold" style="color:white;margin:0">Informe de Evaluación Biomecánica</h2>
+                  <p class="text-xs" style="color:rgba(255,255,255,.8);margin:0">PrevenIA Sports Vision & Biomechanical Assessment Suite</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <button class="btn btn-outline btn-sm" id="btn-report-download-pdf" style="color:white;border-color:rgba(255,255,255,.4)">
+                  <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Descargar PDF
+                </button>
+                <button class="btn btn-icon btn-ghost" id="btn-close-report" style="color:white" aria-label="Cerrar informe">
+                  <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Modal Body with 6 Sections -->
+            <div class="biomech-report-body">
+
+              <!-- SECTION A: RESUMEN DE EVALUACIÓN -->
+              <div class="mb-6">
+                <div class="biomech-section-title">
+                  <span class="biomech-section-badge">A</span>
+                  <span>Resumen de Evaluación</span>
+                </div>
+                <div class="grid grid-3" style="gap:1rem" id="report-summary-cards">
+                  <div class="card" style="background:var(--gray-50)">
+                    <div class="card-body" style="padding:1rem">
+                      <div class="text-xs text-gray font-semibold">ATLETA EVALUADO</div>
+                      <div class="text-lg font-bold mt-1" id="rep-athlete-name">—</div>
+                      <div class="text-xs text-gray mt-1" id="rep-athlete-sport">Deporte: —</div>
+                      <div class="text-xs text-gray" id="rep-session-date">Fecha: —</div>
+                    </div>
+                  </div>
+
+                  <div class="card" style="background:var(--gray-50)">
+                    <div class="card-body" style="padding:1rem">
+                      <div class="text-xs text-gray font-semibold">EJERCICIO Y DURACIÓN</div>
+                      <div class="text-lg font-bold mt-1" id="rep-exercise-display">—</div>
+                      <div class="text-xs text-gray mt-1" id="rep-duration">Duración: 00:00</div>
+                      <div class="text-xs text-gray" id="rep-tracking-quality">Calidad de seguimiento: —</div>
+                    </div>
+                  </div>
+
+                  <div class="card" style="background:var(--gray-50)">
+                    <div class="card-body" style="padding:1rem">
+                      <div class="text-xs text-gray font-semibold">RIESGO BIOMECÁNICO IA</div>
+                      <div class="flex items-center gap-2 mt-1">
+                        <span class="text-2xl font-bold" id="rep-risk-score">0</span>
+                        <span class="text-sm text-gray">/ 100</span>
+                        <span class="badge" id="rep-risk-badge" style="margin-left:auto">Bajo</span>
+                      </div>
+                      <div class="text-xs text-gray mt-1" id="rep-confidence">Confianza: 95%</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SECTION B: ERRORES BIOMECÁNICOS IDENTIFICADOS -->
+              <div class="mb-6">
+                <div class="biomech-section-title">
+                  <span class="biomech-section-badge">B</span>
+                  <span>Errores Biomecánicos Identificados</span>
+                  <span class="text-xs text-gray font-normal" style="margin-left:auto">Agrupados por ocurrencia para evitar duplicados continuos</span>
+                </div>
+                <div class="card">
+                  <div class="table-wrapper">
+                    <table class="table" id="report-errors-table">
+                      <thead>
+                        <tr>
+                          <th>Posible Error</th>
+                          <th>Articulación</th>
+                          <th>Ángulo Medido</th>
+                          <th>Referencia</th>
+                          <th>Frecuencia</th>
+                          <th>Confianza</th>
+                          <th>Severidad</th>
+                          <th>Observaciones</th>
+                        </tr>
+                      </thead>
+                      <tbody id="report-errors-tbody">
+                        <tr><td colspan="8" class="text-center text-sm text-gray py-4">No se registraron errores biomecánicos durante la sesión.</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SECTION C & D: ANÁLISIS CORPORAL (ESQUELETO) Y TIMELINE CRONOLÓGICO -->
+              <div class="grid grid-2 mb-6" style="gap:1.5rem">
+                <!-- SECTION C: ANÁLISIS CORPORAL -->
+                <div>
+                  <div class="biomech-section-title">
+                    <span class="biomech-section-badge">C</span>
+                    <span>Análisis Corporal & Zonas de Desviación</span>
+                  </div>
+                  <div class="biomech-skeleton-box">
+                    <canvas id="report-mannequin-canvas" width="340" height="400" style="max-width:100%;height:auto"></canvas>
+                    <div class="text-xs text-gray mt-2" style="color:#94a3b8;text-align:center">
+                      Representación interactiva del esqueleto. Zonas en <span style="color:#ef4444;font-weight:700">rojo</span> indican desviaciones recurrentes.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SECTION D: HISTORIAL DE EVENTOS -->
+                <div>
+                  <div class="biomech-section-title">
+                    <span class="biomech-section-badge">D</span>
+                    <span>Historial Cronológico de Eventos</span>
+                  </div>
+                  <div class="card" style="max-height:430px;overflow-y:auto;padding:1rem">
+                    <div class="biomech-timeline" id="report-events-timeline">
+                      <div class="text-sm text-gray py-2">Sin eventos de desviación registrados.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SECTION E: OBSERVACIONES MÉDICAS -->
+              <div class="mb-6">
+                <div class="biomech-section-title">
+                  <span class="biomech-section-badge">E</span>
+                  <span>Observaciones del Médico Deportivo / Fisioterapeuta</span>
+                </div>
+                <div class="card">
+                  <div class="card-body" style="padding:1.25rem">
+                    <label class="form-label font-semibold">Notas y apuntes clínicos del profesional:</label>
+                    <textarea class="form-control" id="rep-doctor-notes" rows="4" placeholder="Escribe aquí las observaciones clínicas sobre la técnica, déficits neuromusculares detectados o factores de fatiga..."></textarea>
+                    <p class="text-xs text-gray mt-1">Este apartado es editable y queda formalmente registrado en la ficha del atleta.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SECTION F: RECOMENDACIONES PREVENTIVAS -->
+              <div class="mb-6">
+                <div class="biomech-section-title">
+                  <span class="biomech-section-badge">F</span>
+                  <span>Recomendaciones Preventivas Personalizadas</span>
+                </div>
+                <div class="card">
+                  <div class="card-body" style="padding:1.25rem">
+                    <div class="grid grid-2" style="gap:1rem">
+                      <div>
+                        <label class="form-label font-semibold">1. Corrección Técnica:</label>
+                        <input type="text" class="form-control" id="rec-technical" placeholder="ej. Empujar rodillas hacia fuera durante la fase excéntrica">
+                      </div>
+                      <div>
+                        <label class="form-label font-semibold">2. Movilidad Articular:</label>
+                        <input type="text" class="form-control" id="rec-mobility" placeholder="ej. Dorsiflexión de tobillo con banda elástica y apertura torácica">
+                      </div>
+                      <div>
+                        <label class="form-label font-semibold">3. Fortalecimiento Muscular:</label>
+                        <input type="text" class="form-control" id="rec-strength" placeholder="ej. Fortalecimiento de glúteo medio (monster walks) y cuádriceps">
+                      </div>
+                      <div>
+                        <label class="form-label font-semibold">4. Estabilidad y Propiocepción:</label>
+                        <input type="text" class="form-control" id="rec-stability" placeholder="ej. Apoyo monopodal sobre bosu y control lumbopélvico">
+                      </div>
+                      <div>
+                        <label class="form-label font-semibold">5. Flexibilidad:</label>
+                        <input type="text" class="form-control" id="rec-flexibility" placeholder="ej. Estiramientos dinámicos de isquiotibiales y flexores de cadera">
+                      </div>
+                      <div>
+                        <label class="form-label font-semibold">6. Seguimiento Deportivo:</label>
+                        <input type="text" class="form-control" id="rec-followup" placeholder="ej. Reevaluación en 14 días antes de aumentar la carga de entrenamiento">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Doctor Review Signoff Box -->
+              <div class="card mb-4" style="background:var(--gray-50);border:1px solid #93c5fd">
+                <div class="card-body flex justify-between items-center flex-wrap gap-3" style="padding:1.25rem">
+                  <div class="flex items-center gap-3">
+                    <input type="checkbox" id="rep-doctor-approved" style="width:20px;height:20px;accent-color:var(--primary);cursor:pointer">
+                    <div>
+                      <label for="rep-doctor-approved" class="font-bold text-sm cursor-pointer" style="margin:0;color:var(--gray-900)">
+                        Validar y Aprobar Informe como Médico / Profesional Deportivo
+                      </label>
+                      <p class="text-xs text-gray" id="rep-approval-status">
+                        Pendiente de aprobación. Al marcar, se registra tu firma digital y fecha de revisión.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="flex gap-2">
+                    <button class="btn btn-outline" id="btn-save-report" type="button">
+                      <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                      Guardar Observaciones
+                    </button>
+                    <button class="btn btn-primary" id="btn-modal-download-pdf" type="button">
+                      <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                      Descargar PDF Completo
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Previous Assessments History Comparison Modal -->
+        <div id="athlete-history-modal" class="biomech-report-modal" style="display:none">
+          <div class="biomech-report-content" style="max-width:850px">
+            <div class="biomech-report-header">
+              <h3 class="font-bold text-lg" style="color:white;margin:0">Historial Biomecánico del Atleta</h3>
+              <button class="btn btn-icon btn-ghost" id="btn-close-history" style="color:white">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+            <div class="biomech-report-body" style="padding:1.25rem">
+              <div class="table-wrapper">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Fecha</th>
+                      <th>Ejercicio</th>
+                      <th>Duración</th>
+                      <th>Riesgo</th>
+                      <th>Errores</th>
+                      <th>Revisión Médica</th>
+                      <th>Acción</th>
+                    </tr>
+                  </thead>
+                  <tbody id="athlete-history-tbody">
+                    <tr><td colspan="7" class="text-center text-sm text-gray py-4">Cargando historial...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Biomechanical Thresholds Calibration Modal -->
+        <div id="thresholds-modal" class="biomech-report-modal" style="display:none">
+          <div class="biomech-report-content" style="max-width:650px">
+            <div class="biomech-report-header">
+              <h3 class="font-bold text-lg" style="color:white;margin:0">Umbrales Biomecánicos Configurables</h3>
+              <button class="btn btn-icon btn-ghost" id="btn-close-thresholds" style="color:white">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+            <div class="biomech-report-body" style="padding:1.5rem">
+              <p class="text-xs text-gray mb-4">Ajusta los rangos de tolerancia cinemática para validación profesional según el nivel o deporte del atleta.</p>
+              <div class="grid grid-2" style="gap:1rem">
+                <div>
+                  <label class="form-label text-xs font-semibold">Tolerancia Valgo Rodilla (° máx):</label>
+                  <input type="number" class="form-control" id="th-valgus" value="12" min="5" max="30">
+                </div>
+                <div>
+                  <label class="form-label text-xs font-semibold">Inclinación Máx Tronco (°):</label>
+                  <input type="number" class="form-control" id="th-trunk" value="40" min="20" max="60">
+                </div>
+                <div>
+                  <label class="form-label text-xs font-semibold">Profundidad Mínima Sentadilla (°):</label>
+                  <input type="number" class="form-control" id="th-squat-depth" value="95" min="70" max="120">
+                </div>
+                <div>
+                  <label class="form-label text-xs font-semibold">Flexión Mín Codos Flexión (°):</label>
+                  <input type="number" class="form-control" id="th-pushup-elbow" value="90" min="60" max="110">
+                </div>
+                <div>
+                  <label class="form-label text-xs font-semibold">Asimetría Bilateral Máx (%):</label>
+                  <input type="number" class="form-control" id="th-asymmetry" value="10" min="3" max="25">
+                </div>
+                <div>
+                  <label class="form-label text-xs font-semibold">Sensibilidad Detección (Frames):</label>
+                  <input type="number" class="form-control" id="th-frames-debounce" value="3" min="1" max="10">
+                </div>
+              </div>
+              <div class="mt-4 flex justify-end gap-2">
+                <button class="btn btn-outline" id="btn-reset-thresholds" type="button">Restablecer Estándar</button>
+                <button class="btn btn-primary" id="btn-save-thresholds" type="button">Aplicar Umbrales</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ==================== PAGE: ASSESSMENTS ==================== -->
+      <div id="page-assessments" class="page hidden">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h1 class="text-2xl font-bold" style="color:var(--gray-900)">Evaluaciones</h1>
+            <p class="text-sm text-gray mt-1">Historial y gestión de evaluaciones posturales</p>
+          </div>
+          <button class="btn btn-primary" onclick="navigate('posture')">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Nueva Evaluación
+          </button>
+        </div>
+
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab(this,'tab-pending')">Pendientes (5)</button>
+          <button class="tab-btn" onclick="switchTab(this,'tab-completed')">Completadas (143)</button>
+          <button class="tab-btn" onclick="switchTab(this,'tab-flagged')">Marcadas (8)</button>
+        </div>
+
+        <div id="tab-pending" class="tab-pane active">
+          <div class="grid grid-2" style="gap:1rem">
+            <div class="card">
+              <div class="card-body">
+                <div class="flex justify-between items-start mb-3">
+                  <div class="flex items-center gap-2">
+                    <div class="avatar">MG</div>
+                    <div>
+                      <div class="font-semibold">María González</div>
+                      <div class="text-xs text-gray">Fútbol · Rodilla</div>
+                    </div>
+                  </div>
+                  <span class="badge badge-red">Urgente</span>
+                </div>
+                <p class="text-sm text-gray mb-3">Evaluación de seguimiento tras detección de valgo de rodilla. Programada para hoy.</p>
+                <div class="flex justify-between items-center text-xs text-gray mb-3">
+                  <span>📅 Hoy, 14:00</span>
+                  <span>⏱ ~30 min</span>
+                </div>
+                <button class="btn btn-primary btn-sm w-full" onclick="navigate('posture')">Iniciar Evaluación</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="flex justify-between items-start mb-3">
+                  <div class="flex items-center gap-2">
+                    <div class="avatar" style="background:var(--accent)">PR</div>
+                    <div>
+                      <div class="font-semibold">Pedro Ramírez</div>
+                      <div class="text-xs text-gray">Atletismo · Cadera</div>
+                    </div>
+                  </div>
+                  <span class="badge badge-amber">Programada</span>
+                </div>
+                <p class="text-sm text-gray mb-3">Evaluación de rutina mensual. Análisis de postura en carrera.</p>
+                <div class="flex justify-between items-center text-xs text-gray mb-3">
+                  <span>📅 Mañana, 10:00</span>
+                  <span>⏱ ~45 min</span>
+                </div>
+                <button class="btn btn-outline btn-sm w-full" onclick="navigate('posture')">Ver Detalles</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-completed" class="tab-pane">
+          <div class="card">
+            <div class="table-wrapper">
+              <table class="table">
+                <thead><tr><th>Fecha</th><th>Atleta</th><th>Tipo</th><th>Riesgo IA</th><th>Zonas Analizadas</th><th>Estado</th></tr></thead>
+                <tbody>
+                  <tr><td class="text-sm">02/10/2026</td><td class="table-name">María González</td><td class="text-sm">Frontal</td><td><span class="badge risk-high">Alto (72)</span></td><td class="text-sm text-gray">Rodilla, Cadera</td><td><span class="badge badge-green">Completada</span></td></tr>
+                  <tr><td class="text-sm">01/10/2026</td><td class="table-name">Pedro Ramírez</td><td class="text-sm">Lateral</td><td><span class="badge risk-medium">Medio (45)</span></td><td class="text-sm text-gray">Columna, Hombro</td><td><span class="badge badge-green">Completada</span></td></tr>
+                  <tr><td class="text-sm">30/09/2026</td><td class="table-name">Ana Martínez</td><td class="text-sm">Posterior</td><td><span class="badge risk-high">Alto (68)</span></td><td class="text-sm text-gray">Cadera, Tobillo</td><td><span class="badge badge-green">Completada</span></td></tr>
+                  <tr><td class="text-sm">29/09/2026</td><td class="table-name">Luis Torres</td><td class="text-sm">Frontal</td><td><span class="badge risk-low">Bajo (22)</span></td><td class="text-sm text-gray">Hombro, Codo</td><td><span class="badge badge-green">Completada</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-flagged" class="tab-pane">
+          <div id="flagged-assessments" class="grid grid-2" style="gap:1rem">
+            <div class="alert-icon"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+            <span>8 evaluaciones requieren revisión médica adicional antes de aprobación.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== PAGE: ALERTS ==================== -->
+      <div id="page-alerts" class="page hidden">
+        <h1 class="text-2xl font-bold mb-2" style="color:var(--gray-900)">Centro de Alertas</h1>
+        <p class="text-sm text-gray mb-6">Alertas generadas automáticamente por el sistema IA</p>
+        <button class="btn btn-outline btn-sm mb-4" id="btn-mark-all-alerts-read">Marcar todas como revisadas</button>
+        <div id="alerts-container" style="display:flex;flex-direction:column;gap:1rem">
+          <div class="card">
+            <div class="card-body">
+              <div class="flex items-start gap-3">
+                <div class="stat-icon red" style="flex-shrink:0"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+                <div class="flex-1">
+                  <div class="flex justify-between items-start">
+                    <div>
+                      <strong>Riesgo Crítico — María González</strong>
+                      <span class="badge risk-high ml-2" style="margin-left:.5rem">Crítico</span>
+                    </div>
+                    <span class="text-xs text-gray">Hace 2 horas</span>
+                  </div>
+                  <p class="text-sm text-gray mt-1">Ángulo de rodilla izquierda: 142° (umbral crítico: &lt;150°). Riesgo de lesión: 89%. Recomendación: evaluación médica inmediata.</p>
+                  <div class="flex gap-2 mt-3">
+                    <button class="btn btn-danger btn-sm">Acción inmediata</button>
+                    <button class="btn btn-ghost btn-sm">Marcar como revisada</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="flex items-start gap-3">
+                <div class="stat-icon amber" style="flex-shrink:0"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+                <div class="flex-1">
+                  <div class="flex justify-between items-start">
+                    <div>
+                      <strong>Asimetría Postural Persistente — Ana Martínez</strong>
+                      <span class="badge risk-medium" style="margin-left:.5rem">Alto</span>
+                    </div>
+                    <span class="text-xs text-gray">Hace 1 día</span>
+                  </div>
+                  <p class="text-sm text-gray mt-1">Asimetría de cadera detectada en 3 evaluaciones consecutivas. Diferencia lateral: 12mm. Posible dismetría de miembros inferiores.</p>
+                  <div class="flex gap-2 mt-3">
+                    <button class="btn btn-primary btn-sm" onclick="navigate('posture')">Ver análisis</button>
+                    <button class="btn btn-ghost btn-sm">Marcar como revisada</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== PAGE: REPORTS ==================== -->
+      <div id="page-reports" class="page hidden">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h1 class="text-2xl font-bold" style="color:var(--gray-900)">Reportes</h1>
+            <p class="text-sm text-gray mt-1">Genera y descarga reportes del sistema</p>
+          </div>
+          <button class="btn btn-primary" id="btn-generate-report">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/><line x1="12" y1="15" x2="12" y2="3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg>
+            Generar Reporte
+          </button>
+        </div>
+        <div class="grid grid-3">
+          <div class="card" data-report-type="individual" style="cursor:pointer">
+            <div class="card-body text-center" style="padding:2rem 1.5rem">
+              <div class="stat-icon blue" style="margin:0 auto 1rem;width:56px;height:56px"><svg width="26" height="26" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+              <h3 class="font-bold mb-1">Reporte Individual</h3>
+              <p class="text-sm text-gray">Análisis completo de un atleta con historial, ángulos y recomendaciones</p>
+            </div>
+          </div>
+          <div class="card" data-report-type="statistical" style="cursor:pointer">
+            <div class="card-body text-center" style="padding:2rem 1.5rem">
+              <div class="stat-icon green" style="margin:0 auto 1rem;width:56px;height:56px"><svg width="26" height="26" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+              <h3 class="font-bold mb-1">Reporte Estadístico</h3>
+              <p class="text-sm text-gray">Estadísticas globales del equipo, distribución de riesgo y tendencias</p>
+            </div>
+          </div>
+          <div class="card" data-report-type="prevention" style="cursor:pointer">
+            <div class="card-body text-center" style="padding:2rem 1.5rem">
+              <div class="stat-icon amber" style="margin:0 auto 1rem;width:56px;height:56px"><svg width="26" height="26" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <h3 class="font-bold mb-1">Reporte de Prevención</h3>
+              <p class="text-sm text-gray">Lesiones prevenidas, efectividad del programa y ROI de la intervención</p>
+            </div>
+          </div>
+        </div>
+        <div class="card mt-4">
+          <div class="card-header"><span class="card-title">Reportes generados</span></div>
+          <div class="card-body" id="reports-list">
+            <p class="text-sm text-gray">Cargando reportes...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== PAGE: SCHEDULE ==================== -->
+      <div id="page-schedule" class="page hidden">
+        <h1 class="text-2xl font-bold mb-6" style="color:var(--gray-900)">Agenda de Citas</h1>
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title" id="schedule-current-month"></span>
+            <div class="flex gap-2">
+              <button class="btn btn-ghost btn-sm" id="schedule-prev-month" aria-label="Mes anterior">◀</button>
+              <button class="btn btn-ghost btn-sm" id="schedule-next-month" aria-label="Mes siguiente">▶</button>
+            </div>
+          </div>
+          <div class="card-body">
+            <!-- Simple schedule list -->
+            <div id="appointments-list" style="display:flex;flex-direction:column;gap:.75rem">
+              <p class="text-sm text-gray">No hay citas agendadas en este dispositivo.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary btn-sm" onclick="openModal('modal-add-appointment')">
+              <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Nueva Cita
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== PAGE: RISK ANALYSIS ==================== -->
+      <div id="page-risk-analysis" class="page hidden">
+        <h1 class="text-2xl font-bold mb-2" style="color:var(--gray-900)">Análisis de Riesgo</h1>
+        <p class="text-sm text-gray mb-6">Mapa de riesgo por atleta y zona corporal</p>
+        <div class="grid grid-4 mb-6">
+          <div class="card" style="border-top:4px solid var(--danger)">
+            <div class="card-body text-center">
+              <div class="stat-value" style="color:var(--danger)">87</div>
+              <div class="text-sm text-gray">Riesgo Alto</div>
+            </div>
+          </div>
+          <div class="card" style="border-top:4px solid var(--warning)">
+            <div class="card-body text-center">
+              <div class="stat-value" style="color:var(--warning)">62</div>
+              <div class="text-sm text-gray">Riesgo Medio</div>
+            </div>
+          </div>
+          <div class="card" style="border-top:4px solid var(--accent)">
+            <div class="card-body text-center">
+              <div class="stat-value" style="color:var(--accent)">98</div>
+              <div class="text-sm text-gray">Riesgo Bajo</div>
+            </div>
+          </div>
+          <div class="card" style="border-top:4px solid var(--primary)">
+            <div class="card-body text-center">
+              <div class="stat-value">—</div>
+              <div class="text-sm text-gray">Riesgo promedio</div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="card-title">Mapa de Calor por Zona Corporal</span></div>
+          <div class="card-body">
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem">
+              <div data-risk-zone="knee" style="background:var(--danger-light);border:1px solid var(--danger);border-radius:var(--radius);padding:1rem;text-align:center">
+                <div class="font-bold" style="color:var(--danger);font-size:1.5rem">38</div>
+                <div class="font-semibold">Rodilla</div>
+                <div class="text-xs text-gray">Zona de mayor riesgo</div>
+              </div>
+              <div data-risk-zone="shoulder" style="background:#FEF3C7;border:1px solid var(--warning);border-radius:var(--radius);padding:1rem;text-align:center">
+                <div class="font-bold" style="color:var(--warning);font-size:1.5rem">29</div>
+                <div class="font-semibold">Hombro</div>
+                <div class="text-xs text-gray">Riesgo moderado</div>
+              </div>
+              <div data-risk-zone="hip" style="background:var(--primary-light);border:1px solid var(--primary);border-radius:var(--radius);padding:1rem;text-align:center">
+                <div class="font-bold" style="color:var(--primary);font-size:1.5rem">24</div>
+                <div class="font-semibold">Cadera</div>
+                <div class="text-xs text-gray">En seguimiento</div>
+              </div>
+              <div data-risk-zone="ankle" style="background:var(--success-light);border:1px solid var(--accent);border-radius:var(--radius);padding:1rem;text-align:center">
+                <div class="font-bold" style="color:var(--accent);font-size:1.5rem">11</div>
+                <div class="font-semibold">Tobillo</div>
+                <div class="text-xs text-gray">Riesgo bajo</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== PAGE: HISTORY ==================== -->
+      <div id="page-history" class="page hidden">
+        <h1 class="text-2xl font-bold mb-6" style="color:var(--gray-900)">Historial Clínico</h1>
+        <div class="card">
+          <div class="card-header">
+            <div class="flex items-center gap-2">
+              <div class="avatar" id="history-athlete-avatar">—</div>
+              <div>
+                <div class="font-semibold" id="history-athlete-name">Selecciona atleta</div>
+                <div class="text-xs text-gray" id="history-athlete-meta"></div>
+              </div>
+            </div>
+            <select class="form-control" id="history-athlete" style="width:200px">
+              <option value="">Selecciona un atleta</option>
+            </select>
+          </div>
+          <div class="card-body">
+            <div style="position:relative;padding-left:2rem">
+              <div style="position:absolute;left:.65rem;top:0;bottom:0;width:2px;background:var(--gray-200)"></div>
+              <div id="history-timeline" style="display:flex;flex-direction:column;gap:1.5rem">
+                <div style="position:relative">
+                  <div style="position:absolute;left:-1.85rem;top:.25rem;width:12px;height:12px;border-radius:50%;background:var(--danger);border:2px solid white;box-shadow:0 0 0 2px var(--danger)"></div>
+                  <div style="background:var(--danger-light);border:1px solid #FCA5A5;border-radius:var(--radius);padding:1rem">
+                    <div class="flex justify-between text-sm"><strong>Evaluación IA — Riesgo Alto</strong><span class="text-gray">02/10/2026 · 09:30</span></div>
+                    <p class="text-sm text-gray mt-1">Valgo de rodilla izquierda 142°. Recomendación: evaluación ortopédica urgente.</p>
+                  </div>
+                </div>
+                <div style="position:relative">
+                  <div style="position:absolute;left:-1.85rem;top:.25rem;width:12px;height:12px;border-radius:50%;background:var(--warning);border:2px solid white;box-shadow:0 0 0 2px var(--warning)"></div>
+                  <div style="background:#FEF3C7;border:1px solid #FCD34D;border-radius:var(--radius);padding:1rem">
+                    <div class="flex justify-between text-sm"><strong>Evaluación IA — Riesgo Medio</strong><span class="text-gray">15/09/2026 · 10:00</span></div>
+                    <p class="text-sm text-gray mt-1">Leve asimetría de rodilla detectada. Se iniciaron ejercicios correctivos.</p>
+                  </div>
+                </div>
+                <div style="position:relative">
+                  <div style="position:absolute;left:-1.85rem;top:.25rem;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid white;box-shadow:0 0 0 2px var(--accent)"></div>
+                  <div style="background:var(--success-light);border:1px solid #6EE7B7;border-radius:var(--radius);padding:1rem">
+                    <div class="flex justify-between text-sm"><strong>Primera Evaluación</strong><span class="text-gray">01/09/2026 · 09:00</span></div>
+                    <p class="text-sm text-gray mt-1">Evaluación inicial completa. Línea de base establecida. Sin anomalías significativas.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== PAGE: SETTINGS ==================== -->
+      <div id="page-settings" class="page hidden">
+        <h1 class="text-2xl font-bold mb-6" style="color:var(--gray-900)">Configuración</h1>
+        <div class="grid grid-2">
+          <div>
+            <div class="card mb-4">
+              <div class="card-header"><span class="card-title">Configuración de IA</span></div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label class="form-label">Umbral de riesgo alto (%)</label>
+                  <input type="number" class="form-control" value="70" min="50" max="90">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Umbral de riesgo crítico (%)</label>
+                  <input type="number" class="form-control" value="85" min="70" max="100">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Modelo de IA activo</label>
+                  <select class="form-control">
+                    <option>PrevenIA v2.3 (Producción)</option>
+                    <option>PrevenIA v2.4 (Beta)</option>
+                    <option>PrevenIA Lite (Rápido)</option>
+                  </select>
+                </div>
+                <button class="btn btn-primary btn-sm">Guardar cambios</button>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header"><span class="card-title">Notificaciones</span></div>
+              <div class="card-body">
+                <div style="display:flex;flex-direction:column;gap:1rem">
+                  <div class="flex justify-between items-center">
+                    <div><div class="font-semibold text-sm">Alertas de riesgo alto</div><div class="text-xs text-gray">Notificar inmediatamente por email</div></div>
+                    <label class="toggle"><input type="checkbox" checked><span></span></label>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <div><div class="font-semibold text-sm">Recordatorio de citas</div><div class="text-xs text-gray">30 minutos antes</div></div>
+                    <label class="toggle"><input type="checkbox" checked><span></span></label>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <div><div class="font-semibold text-sm">Reporte semanal</div><div class="text-xs text-gray">Resumen automático los lunes</div></div>
+                    <label class="toggle"><input type="checkbox"><span></span></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="card">
+              <div class="card-header"><span class="card-title">Integración AWS</span></div>
+              <div class="card-body">
+                <div class="alert alert-success mb-4">
+                  <div class="alert-icon"><svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                  Todos los servicios conectados
+                </div>
+                <div style="display:flex;flex-direction:column;gap:.75rem">
+                  <div class="flex justify-between items-center text-sm"><span>🟢 AWS S3 — Almacenamiento</span><span class="badge badge-green">Activo</span></div>
+                  <div class="flex justify-between items-center text-sm"><span>🟢 AWS Lambda — Análisis IA</span><span class="badge badge-green">Activo</span></div>
+                  <div class="flex justify-between items-center text-sm"><span>🟢 AWS RDS — Base de Datos</span><span class="badge badge-green">Activo</span></div>
+                  <div class="flex justify-between items-center text-sm"><span>🟢 AWS SES — Notificaciones</span><span class="badge badge-green">Activo</span></div>
+                  <div class="flex justify-between items-center text-sm"><span>🟡 AWS CloudWatch — Logs</span><span class="badge badge-amber">Atención</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="page-profile" class="page hidden">
+        <h1 class="text-2xl font-bold mb-6" style="color:var(--gray-900)">Mi Perfil</h1>
+        <div class="card">
+          <form id="profile-form">
+            <div class="card-body">
+              <div class="form-row">
+                <div class="form-group"><label class="form-label">Nombre</label><input class="form-control" name="first_name" required></div>
+                <div class="form-group"><label class="form-label">Apellido</label><input class="form-control" name="last_name" required></div>
+              </div>
+              <div class="form-group"><label class="form-label">Correo</label><input class="form-control" name="email" type="email" required></div>
+              <div class="form-row">
+                <div class="form-group"><label class="form-label">Teléfono</label><input class="form-control" name="phone"></div>
+                <div class="form-group"><label class="form-label">Institución</label><input class="form-control" name="institution"></div>
+              </div>
+              <div class="form-group"><label class="form-label">Especialidad</label><input class="form-control" name="specialty"></div>
+              <button class="btn btn-primary" type="submit">Guardar perfil</button>
+            </div>
+          </form>
+        </div>
+        <div class="card mt-4">
+          <div class="card-header"><span class="card-title">Cambiar contraseña</span></div>
+          <form id="password-form">
+            <div class="card-body">
+              <div class="form-row">
+                <div class="form-group"><label class="form-label">Contraseña actual</label><input class="form-control" name="old_password" type="password" required></div>
+                <div class="form-group"><label class="form-label">Nueva contraseña (mínimo 8 caracteres)</label><input class="form-control" name="new_password" type="password" minlength="8" required></div>
+              </div>
+              <button class="btn btn-primary" type="submit">Actualizar contraseña</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div><!-- /page-content -->
+  </main>
+</div><!-- /app-layout -->
+
+<!-- ===== MODALS ===== -->
+
+<!-- Add Athlete Modal -->
+<div class="modal-overlay" id="modal-add-athlete">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">Registrar Nuevo Atleta</span>
+      <button class="btn btn-icon btn-ghost" onclick="closeModal('modal-add-athlete')">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Nombre *</label>
+          <input type="text" class="form-control" id="athlete-first-name" placeholder="Ej: Juan" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Apellido *</label>
+          <input type="text" class="form-control" id="athlete-last-name" placeholder="Ej: García" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Fecha de nacimiento</label>
+          <input type="date" class="form-control" id="athlete-date-of-birth">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Género</label>
+          <select class="form-control" id="athlete-gender">
+            <option value="">Seleccionar...</option>
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+            <option value="O">Otro</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Peso (kg)</label>
+          <input type="number" class="form-control" id="athlete-weight" placeholder="70" min="1" step="0.1">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Altura (cm)</label>
+          <input type="number" class="form-control" id="athlete-height" placeholder="175" min="1" step="0.1">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Deporte *</label>
+        <select class="form-control" id="athlete-sport" required>
+          <option value="">Seleccionar deporte...</option>
+          <option>Fútbol</option>
+          <option>Atletismo</option>
+          <option>Natación</option>
+          <option>Basketball</option>
+          <option>Gimnasia</option>
+          <option>Tenis</option>
+          <option>Voleibol</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Correo electrónico</label>
+        <input type="email" class="form-control" id="athlete-email" placeholder="atleta@ejemplo.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Lesiones previas relevantes</label>
+        <textarea class="form-control" id="athlete-injuries" rows="3" placeholder="Describir lesiones previas, cirugías, etc."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-add-athlete')">Cancelar</button>
+      <button class="btn btn-primary" id="btn-create-athlete">Registrar Atleta</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Appointment Modal -->
+<div class="modal-overlay" id="modal-add-appointment">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">Nueva Cita</span>
+      <button class="btn btn-icon btn-ghost" onclick="closeModal('modal-add-appointment')">
+        <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Atleta</label>
+        <select class="form-control" id="appointment-athlete">
+          <option value="">Cargando atletas...</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Fecha</label>
+          <input type="date" class="form-control">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Hora</label>
+          <input type="time" class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tipo de evaluación</label>
+        <select class="form-control">
+          <option>Evaluación Postural Inicial</option>
+          <option>Seguimiento Postural</option>
+          <option>Análisis de Movimiento</option>
+          <option>Evaluación de Riesgo</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Prioridad</label>
+        <select class="form-control">
+          <option>Normal</option>
+          <option>Alta</option>
+          <option>Urgente</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Notas</label>
+        <textarea class="form-control" rows="2" placeholder="Observaciones adicionales..."></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('modal-add-appointment')">Cancelar</button>
+      <button class="btn btn-primary" id="btn-save-appointment">Agendar Cita</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- Toggle CSS for settings -->
+<style>
+.toggle { position:relative;display:inline-block;width:44px;height:24px;cursor:pointer }
+.toggle input { opacity:0;width:0;height:0 }
+.toggle span {
+  position:absolute;inset:0;background:var(--gray-300);border-radius:24px;transition:var(--transition);
+}
+.toggle span::before {
+  content:'';position:absolute;width:18px;height:18px;border-radius:50%;background:white;
+  left:3px;top:3px;transition:var(--transition);
+}
+.toggle input:checked + span { background:var(--primary); }
+.toggle input:checked + span::before { transform:translateX(20px); }
+</style>
+
+<script src="js/api.js"></script>
+<script>
+// ===== NAVIGATION =====
+function navigate(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+  const target = document.getElementById('page-' + page);
+  if (target) {
+    target.classList.remove('hidden');
+    target.classList.add('active');
+  }
+
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const navItem = document.querySelector(`.nav-item[onclick="navigate('${page}')"]`);
+  if (navItem) navItem.classList.add('active');
+
+  const titles = {
+    dashboard: 'Dashboard', athletes: 'Atletas', posture: 'Análisis Postural',
+    assessments: 'Evaluaciones', alerts: 'Alertas', reports: 'Reportes',
+    'risk-analysis': 'Análisis de Riesgo', history: 'Historial Clínico',
+    schedule: 'Agenda de Citas', settings: 'Configuración', profile: 'Mi Perfil'
+  };
+  document.getElementById('page-title').textContent = titles[page] || 'PrevenIA';
+
+  // Close sidebar on mobile
+  if (window.innerWidth < 769) closeSidebar();
+
+  // Close dropdowns
+  document.querySelectorAll('.dropdown-menu').forEach(d => d.classList.remove('open'));
+}
+
+// ===== SIDEBAR MOBILE =====
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('sidebar-overlay');
+const toggleBtn = document.getElementById('sidebar-toggle');
+
+function openSidebar() {
+  sidebar.classList.add('open');
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+toggleBtn.addEventListener('click', () => {
+  sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+});
+overlay.addEventListener('click', closeSidebar);
+
+// ===== MODALS =====
+function openModal(id) {
+  document.getElementById(id).classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) closeModal(m.id); });
+});
+
+// ===== TABS =====
+function switchTab(btn, tabId) {
+  btn.closest('.tabs').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const panes = document.querySelectorAll('.tab-pane');
+  panes.forEach(p => p.classList.remove('active'));
+  const target = document.getElementById(tabId);
+  if (target) target.classList.add('active');
+}
+
+// ===== TOAST =====
+function showToast(msg, type = 'info') {
+  const icons = {
+    success: '<svg width="18" height="18" fill="none" stroke="var(--accent)" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>',
+    error: '<svg width="18" height="18" fill="none" stroke="var(--danger)" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
+    warning: '<svg width="18" height="18" fill="none" stroke="var(--warning)" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>',
+    info: '<svg width="18" height="18" fill="none" stroke="var(--primary)" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'
+  };
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  const icon = document.createElement('span');
+  icon.innerHTML = icons[type] || icons.info;
+  const message = document.createElement('span');
+  message.style.cssText = 'flex:1;font-size:.875rem';
+  message.textContent = msg;
+  const dismiss = document.createElement('button');
+  dismiss.type = 'button';
+  dismiss.textContent = '×';
+  dismiss.setAttribute('aria-label', 'Cerrar notificación');
+  dismiss.style.cssText = 'background:none;border:none;cursor:pointer;color:var(--gray-400);padding:0;font-size:1.1rem';
+  dismiss.addEventListener('click', () => t.remove());
+  t.append(icon, message, dismiss);
+  document.getElementById('toast-container').appendChild(t);
+  setTimeout(() => t.remove(), 4000);
+}
+
+// ===== CLOSE DROPDOWNS ON OUTSIDE CLICK =====
+document.addEventListener('click', e => {
+  if (!e.target.closest('.dropdown')) {
+    document.querySelectorAll('.dropdown-menu').forEach(d => d.classList.remove('open'));
+  }
+});
+
+// ===== LOAD USER =====
+window.addEventListener('DOMContentLoaded', () => {
+  let user = {};
+  try {
+    user = JSON.parse(localStorage.getItem('prevenia_user') || '{}');
+  } catch {
+    localStorage.removeItem('prevenia_user');
+  }
+  const name = user.name || user.full_name || `${user.first_name || ''} ${user.last_name || ''}`.trim() || 'Usuario';
+  const initials = name.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase();
+  document.getElementById('user-avatar').textContent = initials;
+  document.getElementById('user-display-name').textContent = name;
+  const roles = { medico: 'Médico / Fisioterapeuta', entrenador: 'Entrenador', atleta: 'Atleta' };
+  document.getElementById('user-display-role').textContent = roles[user.role] || 'Profesional';
+});
+
+// ===== LOGOUT =====
+function logout() {
+  api.logout();
+}
+</script>
+<script src="js/dashboard.js?v=20261111-exercise-reference-v22"></script>
+</body>
+</html>
